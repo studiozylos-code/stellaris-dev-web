@@ -12,20 +12,24 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("es");
+  const [locale, setLocaleState] = useState<Locale>("en");
 
   useEffect(() => {
-    // 1. Check saved language preference
+    // 1. If user previously selected a language manually, respect that
     const saved = localStorage.getItem("stellaris_lang") as Locale | null;
     if (saved && (saved === "es" || saved === "en")) {
       setLocaleState(saved);
       return;
     }
 
-    // 2. Detect browser language
+    // 2. Default is English ("en"). Check if visitor is from a Spanish-speaking browser/region
     if (typeof window !== "undefined" && window.navigator) {
-      const browserLang = window.navigator.language || (window.navigator as unknown as { userLanguage: string }).userLanguage;
-      if (browserLang && browserLang.toLowerCase().startsWith("es")) {
+      const userLangs = window.navigator.languages || [window.navigator.language];
+      const isSpanishSpeaker = userLangs.some(
+        (lang) => lang && lang.toLowerCase().startsWith("es")
+      );
+
+      if (isSpanishSpeaker) {
         setLocaleState("es");
       } else {
         setLocaleState("en");
