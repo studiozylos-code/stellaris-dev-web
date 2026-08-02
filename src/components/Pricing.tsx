@@ -15,7 +15,7 @@ const plans = [
     badge: null,
     title: "Landing Page",
     subtitle: "Ideal para presentar tu marca o producto con impacto.",
-    price: "$299",
+    price: "$100",
     period: "USD",
     features: [
       "Diseño moderno y profesional",
@@ -37,7 +37,7 @@ const plans = [
     badge: "MÁS POPULAR",
     title: "Sitio Web Corporativo",
     subtitle: "Tu presencia digital completa para empresas y profesionales.",
-    price: "$599",
+    price: "$200",
     period: "USD",
     features: [
       "Hasta 8 secciones personalizadas",
@@ -60,7 +60,7 @@ const plans = [
     badge: null,
     title: "eCommerce",
     subtitle: "Tu tienda online lista para vender desde el primer día.",
-    price: "$999",
+    price: "$499",
     period: "USD",
     features: [
       "Catálogo de productos ilimitado",
